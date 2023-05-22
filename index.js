@@ -64,13 +64,23 @@ async function run() {
     // services routes
     app.get('/services', async (req, res) => {
       const sort = req.query.sort;
-   // query for price that have a runtime less than(lt) 100
-   const query = { price: { $lt: 100 } };
+      const search = req.query.search;
+      console.log(search);
+   //* query for price that have a runtime less than(lt) 100
+   //  const query = { price: { $lt: 100 } };
+   //* query for price that have a runtime greater than(gt) 150
+    // const query = { price: { $gt: 150 } };
+   //* query for price that have a runtime greater than equal(gte) 150
+   // const query = { price: { $gte: 150 } };
+   //* query for price that have a runtime greater than 50 and less than 100
+  //  const query = { price: { $gt: 50, $lte: 150 } };
+    // const query = { };
+    // db.InspirationalWomen.find({first_name: { $regex: /Harriet/i} })
+    const query = {title : { $regex: search, $options: 'i'}}
       const options = {
         // sort matched documents in descending order by rating
         sort: { 
           "price" : sort === 'asc' ? 1 : -1
-
          },
         
       };
