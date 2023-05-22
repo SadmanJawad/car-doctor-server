@@ -64,8 +64,8 @@ async function run() {
     // services routes
     app.get('/services', async (req, res) => {
       const sort = req.query.sort;
-
-      const query = {};
+   // query for price that have a runtime less than(lt) 100
+   const query = { price: { $lt: 100 } };
       const options = {
         // sort matched documents in descending order by rating
         sort: { 
